@@ -1,5 +1,11 @@
 # Aplicación de linea de Comandos
 
+👋 Hello, I'm Thouma.
+
+- [LinkedIn](https://www.linkedin.com/in/richard-allcca-llano/)
+
+---
+
 - Aplicación de consola interactiva con menú y listado dinámico personalizado
 - Inquirer para la interacción con el usuario
 - consumo de Api para las coordenadas de la ciudad elegida
