@@ -1,0 +1,17 @@
+{
+  "name": "4_app_clima_geolocation",
+  "version": "1.0.0",
+  "description": "app-clima",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Richard_allcca_llano@hotmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "colors": "1.4.0",
+    "dotenv": "^10.0.0",
+    "inquirer": "^8.2.0"
+  }
+}
