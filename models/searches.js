@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const axios = require("axios");
 
-class Busquedas {
+class Searches {
   historial = [];
   dbPath = "./db/database.json";
 
@@ -46,14 +46,13 @@ class Busquedas {
     };
   }
 
-  // =================================================================
   constructor() {
     // lee db si existe
     this.leerDb();
   }
 
-  // =================================================================
-  //  peticion https - ciudad
+  // ========================
+  //  Petición https - ciudad
   async ciudad(nombre) {
     try {
       const instance = axios.create({
@@ -70,12 +69,20 @@ class Busquedas {
         lat: lugar.center[1],
       }));
     } catch (error) {
+      const err = {
+        status: `${error.response.status}`,
+        message: `${error.message}`,
+        messageFetch: `${error.response.data.message}`,
+        value: nombre,
+      };
+      // console.log(error.response.data.message);
+      console.log(err);
       return [];
     }
   }
 
-  // =================================================================
-  // petición http - clima
+  // ========================
+  // Petición http - clima
   async lugarClima(lat, lon) {
     try {
       const instance = axios.create({
@@ -97,10 +104,10 @@ class Busquedas {
       console.log(error);
     }
   }
-  // =================================================================
+  // ========================
   // Historial
   agregarHistorial(lugar = "") {
-    // pravenir duplicados
+    // Prevenir duplicados
     if (this.historial.includes(lugar.toLocaleLowerCase())) return;
 
     this.historial = this.historial.splice(0, 5);
@@ -109,7 +116,7 @@ class Busquedas {
     this.historial.unshift(lugar.toLocaleLowerCase());
   }
 
-  // =================================================================
+  // ========================
   //  DB
   guardarDb() {
     const payload = {
@@ -126,8 +133,8 @@ class Busquedas {
     const data = JSON.parse(historialDb.toLocaleLowerCase());
     this.historial = data.historial;
   }
-  capitalizar(frace) {
-    let texto = frace.split(" ");
+  capitalizar(text) {
+    let texto = text.split(" ");
     for (let i = 0; i < texto.length; i++) {
       texto[i] = texto[i][0].toUpperCase() + texto[i].substring(1);
     }
@@ -135,4 +142,4 @@ class Busquedas {
   }
 }
 
-module.exports = Busquedas;
+module.exports = Searches;

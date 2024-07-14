@@ -1,52 +1,52 @@
-const inquirer = require("inquirer");
-require("colors");
+const inquirer = require('inquirer');
+require('colors');
 
 const preguntas = [
   {
-    type: "list",
-    name: "opcion",
-    message: "¿Que deseas hacer?\n",
+    type: 'list',
+    name: 'option',
+    message: '¿Que deseas hacer?\n',
     choices: [
       {
         value: 1,
-        name: `${"1".green} Buscar ciudad`,
+        name: `${'1'.green} Buscar ciudad`,
       },
       {
         value: 2,
-        name: `${"2".green} Historial`,
+        name: `${'2'.green} Historial`,
       },
       {
         value: 0,
-        name: `${"0".green} Salir`,
+        name: `${'0'.green} Salir`,
       },
     ],
   },
 ];
 
 // ===============================
-//? control de menu
+// ? control de menu
 // ===============================
 const inquirerMenu = async () => {
-  console.log("======================".green);
-  console.log("Seleccione una Opción");
-  console.log("======================\n".green);
+  console.log('======================'.green);
+  console.log('Seleccione una Opción');
+  console.log('======================\n'.green);
 
-  const { opcion } = await inquirer.prompt(preguntas);
+  const { option } = await inquirer.prompt(preguntas);
 
-  return opcion;
+  return option;
 };
 
 // ===============================
-//? control de busqueda
+// ? control de búsqueda
 // ===============================
 const leerInput = async (message) => {
   const question = [
     {
-      type: "input",
-      name: "msj",
+      type: 'input',
+      name: 'msj',
       message,
       validate(value) {
-        if (value.length === 0) return "Por favor ingresa un valor";
+        if (value.length === 0) return 'Por favor ingresa un valor';
         return true;
       },
     },
@@ -55,14 +55,14 @@ const leerInput = async (message) => {
   return msj;
 };
 // ===============================
-//? control de pausa
+// ? control de pausa
 // ===============================
 const pausa = async () => {
   const question = [
     {
-      type: "input",
-      name: "enter",
-      message: `Presiona ${"Enter".green} para continuar\n`,
+      type: 'input',
+      name: 'enter',
+      message: `Presiona ${'Enter'.green} para continuar\n`,
     },
   ];
   // console.log("\n");
@@ -70,7 +70,7 @@ const pausa = async () => {
 };
 
 // ===============================
-//? control de respuesta
+// ? control de respuesta
 // ===============================
 const listaLugares = async (lugares = []) => {
   // lista de lugares a seleccionar
@@ -83,22 +83,22 @@ const listaLugares = async (lugares = []) => {
     };
   });
 
-  // Agrega la opcion 0 para cancelar
+  // Agrega la opción 0 para cancelar
   choices.unshift({
-    value: "0",
-    name: "0".green + " Cancelar",
+    value: '0',
+    name: `${'0'.green} Cancelar`,
   });
 
-  const preguntas = [
+  const questions = [
     {
-      type: "list",
-      name: "id",
-      message: "Seleccione lugar",
+      type: 'list',
+      name: 'id',
+      message: 'Seleccione lugar',
       choices,
     },
   ];
 
-  const { id } = await inquirer.prompt(preguntas);
+  const { id } = await inquirer.prompt(questions);
   return id;
 };
 
